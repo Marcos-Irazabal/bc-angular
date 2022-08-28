@@ -1,0 +1,18 @@
+<p>recetas works!</p>
+
+<form>
+    <label>Nueva Receta: </label><input type="text" [(ngModel)]="input_name" name="input_name" >
+    <label>Descripcion:</label> <input type="text" [(ngModel)]="input_descripcion" name="input_descripcion">
+    
+    <button type="submit" class="button btn-primary" (click)="agregarReceta()" >Agregar</button>
+    
+</form>
+
+<hr>
+
+<ul>
+    <li *ngFor="let receta of recetas;let i=index"> <p>{{receta.getNombre()}} {{receta.getDescripcion()}}</p> 
+        <img [src]="receta.getFotoUrl()">
+    </li>
+</ul>
+

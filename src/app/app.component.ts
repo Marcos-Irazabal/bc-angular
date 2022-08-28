@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
+import { CarritoComponent } from './carrito/carrito.component';
+import { RecetasComponent } from './recetas/recetas.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PracticaRecetas';
+  
+
 }
