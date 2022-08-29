@@ -9,10 +9,14 @@
 </form>
 
 <hr>
-
-<ul>
-    <li *ngFor="let receta of recetas;let i=index"> <p>{{receta.getNombre()}} {{receta.getDescripcion()}}</p> 
-        <img [src]="receta.getFotoUrl()">
+<p>{{mensaje}}</p>
+<ul><label >Recetas</label>
+    <li *ngFor="let receta of recetas;let i=index"> 
+        <form>
+            <p> <a href="#">{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
+            <button type="submit" class="button btn-primary" (click)="addToCart(receta.getNombre())">Agregar al carrito</button>
+        </form>
+        <!--<img [src]="receta.getFotoUrl()">                (click)="addToCart(receta)"      -->
     </li>
 </ul>
 

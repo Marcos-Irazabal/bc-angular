@@ -24,5 +24,6 @@ export class Receta{
     public getIngredientes(){
         return this.ingredientes;
     }
+
     
 }
