@@ -6,11 +6,12 @@ import { RecetasComponent } from './recetas/recetas.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { CarroServiceService } from './carro-service.service';
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent},
   {path: "recetas",component:RecetasComponent},
-  {path: "",component:AppComponent}
+  //{path: "",component:AppComponent} esto me duplica el index
 ]
 
 
@@ -18,7 +19,7 @@ const appRouters:Routes=[
   declarations: [
     AppComponent,
     RecetasComponent,
-    CarritoComponent
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,7 @@ const appRouters:Routes=[
     RouterModule.forRoot(appRouters),
 
   ],
-  providers: [],
+  providers: [CarroServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

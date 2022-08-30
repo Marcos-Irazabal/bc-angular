@@ -1,17 +1,16 @@
-<p>carrito works!</p>
-
+<hr>
 <form>
     <label>Nuevo ingrediente: </label><input type="text" [(ngModel)]="input_name" name="input_name" >
     <label>Cantidad:</label> <input type="number" [(ngModel)]="input_cant" name="input_cant">
-    <button type="submit" class="button btn-primary" (click)="agregarItem()" >Agregar</button>
-    
+    <button type="submit" class="btn btn-primary" (click)="agregarItem()" >Agregar</button>
 </form>
 
 <hr>
 
-{{mensajeString}}
 <ul>
-    <li *ngFor="let ite of items;let i=index"> {{ite.getNombre()}} ({{ite.getCantidad()}})</li>
+    <li *ngFor="let ite of this.getServiceCarro();let i=index"> {{ite.getNombre()}} ({{ite.getCantidad()}})</li>
 </ul>
+
+<button (click)="mostrarArray()">mostrarArray</button>
 
 

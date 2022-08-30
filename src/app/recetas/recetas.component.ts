@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ingrediente } from 'src/Ingrediente.model';
-import { MensajeroService } from '../mensajero.service';
+import { CarroServiceService } from '../carro-service.service';
+import { RecetaServiceService } from '../receta-service.service';
 import { Receta } from '../receta.model';
 
 @Component({
@@ -8,39 +9,27 @@ import { Receta } from '../receta.model';
   templateUrl: './recetas.component.html',
   styleUrls: ['./recetas.component.css']
 })
-export class RecetasComponent implements OnInit {
+export class RecetasComponent {
 
-  constructor(private servicioMensaje:MensajeroService) { 
-    this.recetas= [ new Receta("Manzana acaramelada","https://elfogongaucho.com.ar/fogon/wp-content/uploads/2021/08/mila-con-frita.jpg", "tiene mucho azucar", this.auxiliar)];
+  constructor(private miServicio:RecetaServiceService) { 
   }
 
-  ngOnInit(): void {
-    this.servicioMensaje.mensajeActual.subscribe(mensaje => this.mensaje = mensaje);
-    //this.mensajeString = this.mensaje.getNombre();
-    this.mensajeString = this.mensaje;
-  }
-  //mensaje:Receta;
-  mensaje:String;
-  mensajeString:String;
+public addToCart(recipe: Receta){
+  this.miServicio.addToCarrito(recipe);
+}
 
+public getServiceReceta(){
+  return this.miServicio.getItems();
+ }
 
- auxiliar:ingrediente[]=[(new ingrediente("Manzana ejemplo",1)) , (new ingrediente("Azucar ejemplo",2)) ];
- recetas: Receta[]
+ /*
  input_name:String;
  input_url:"https://elfogongaucho.com.ar/fogon/wp-content/uploads/2021/08/mila-con-frita.jpg";
  input_descripcion:String;
 
-
  public agregarReceta(){
-    let item = new Receta(this.input_name,this.input_url,this.input_descripcion,this.auxiliar)
-    this.recetas.push(item);
+    this.miServicio.addItem(new Receta(this.input_name,this.input_url,this.input_descripcion,this.ingredientesManzana));
  }
+*/
 
- /*public addToCart(recipe:Receta){  
-  this.mensaje=recipe;
- } */
-
- public addToCart(recipe:String){  
-  this.mensaje=recipe;
- } 
 }

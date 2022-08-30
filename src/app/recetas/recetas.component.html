@@ -1,22 +1,20 @@
-<p>recetas works!</p>
-
-<form>
+<hr>
+<!-- <form>
     <label>Nueva Receta: </label><input type="text" [(ngModel)]="input_name" name="input_name" >
     <label>Descripcion:</label> <input type="text" [(ngModel)]="input_descripcion" name="input_descripcion">
     
-    <button type="submit" class="button btn-primary" (click)="agregarReceta()" >Agregar</button>
+    <button type="submit" class="btn btn-primary" (click)="agregarReceta()" >Agregar</button>
     
 </form>
-
+-->
 <hr>
-<p>{{mensaje}}</p>
 <ul><label >Recetas</label>
-    <li *ngFor="let receta of recetas;let i=index"> 
+    <li *ngFor="let receta of this.getServiceReceta();let i=index"> 
         <form>
             <p> <a href="#">{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
-            <button type="submit" class="button btn-primary" (click)="addToCart(receta.getNombre())">Agregar al carrito</button>
+            <button type="submit" class="btn btn-primary" (click)="addToCart(receta)">Agregar al carrito</button>
         </form>
-        <!--<img [src]="receta.getFotoUrl()">                (click)="addToCart(receta)"      -->
+        <!--<img [src]="receta.getFotoUrl()">      -->
     </li>
 </ul>
 
