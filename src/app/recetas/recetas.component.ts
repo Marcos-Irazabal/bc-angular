@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { ingrediente } from 'src/Ingrediente.model';
-import { CarroServiceService } from '../carro-service.service';
-import { RecetaServiceService } from '../receta-service.service';
-import { Receta } from '../receta.model';
+import { RecetaServiceService } from "src/app/services/receta-service.service";
+import { Receta } from '../models/receta.model';
 
 @Component({
   selector: 'app-recetas',
@@ -18,6 +16,8 @@ export class RecetasComponent {
 public addToCart(recipe: Receta){
   this.miServicio.addToCarrito(recipe);
 }
+
+
 
 public getServiceReceta(){
   return this.miServicio.getItems();

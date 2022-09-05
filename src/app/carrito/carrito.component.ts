@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ingrediente } from 'src/Ingrediente.model';
-import { CarroServiceService } from '../carro-service.service';
-import { Receta } from '../receta.model';
+import { ingrediente } from 'src/app/models/Ingrediente.model';
+import { CarroServiceService } from '../services/carro-service.service';
 
 @Component({
   selector: 'app-carrito',

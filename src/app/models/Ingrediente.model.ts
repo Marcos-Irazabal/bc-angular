@@ -7,11 +7,13 @@ export class ingrediente{
         this.nombre=n;
     }
     
-    public getCantidad(){
+    public getCantidad():number{
         return this.cantidad;
     }
     public getNombre(){
         return this.nombre;
     }
-    
+    public setCantidad(cant:number){
+        this.cantidad= cant;
+    }
 }

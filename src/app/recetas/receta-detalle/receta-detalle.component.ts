@@ -1,7 +1,8 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { RecetaServiceService } from 'src/app/receta-service.service';
-import { Receta } from 'src/app/receta.model';
+import { Observable, Subject } from 'rxjs';
+import { RecetaServiceService } from 'src/app/services/receta-service.service';
+import { Receta } from 'src/app/models/receta.model';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class RecetaDetalleComponent implements OnInit{
   recetas:Receta[];
   recetaActual:Receta;
 
+  private sujetoReceta$:Subject<Receta>;
+
   ngOnInit(): void {
     this.indice = this.route.snapshot.params["id"]; //parametro simple por url
 
@@ -32,6 +35,9 @@ export class RecetaDetalleComponent implements OnInit{
     return true;
   }
 
+  public addToCart(){
+    this.servicioRecetas.addToCarrito(this.recetaActual);
+  }
 
 
 

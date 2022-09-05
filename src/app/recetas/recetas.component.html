@@ -5,15 +5,12 @@
                 <li *ngFor="let receta of this.getServiceReceta();let i=index"> 
                     <form>
                         <p> <a [routerLink]='["detalles",i]' [queryParams]="{indicehtml:i}" >{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
-                        <button type="submit" class="btn btn-primary" (click)="addToCart(receta)">Agregar al carrito</button>
                     </form>
-                    <!--<img [src]="receta.getFotoUrl()">      -->
                 </li>
             </ul>
         </div>
         <div class="col-6">
             <router-outlet></router-outlet>
-            <!--<app-receta-detalle></app-receta-detalle> -->
         </div>
     </div>
 </div>

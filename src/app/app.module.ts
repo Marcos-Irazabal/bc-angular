@@ -6,11 +6,15 @@ import { RecetasComponent } from './recetas/recetas.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { CarroServiceService } from './carro-service.service';
+import { CarroServiceService } from './services/carro-service.service';
+import { RecetaDetalleComponent } from './recetas/receta-detalle/receta-detalle.component';
+import { FormCarritoTemplateComponent } from './Formularios/form-carrito-template/form-carrito-template.component';
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent},
-  {path: "recetas",component:RecetasComponent},
+  {path: "recetas",component:RecetasComponent, 
+  children:[{path: "detalles/:id",component:RecetaDetalleComponent}]
+  }
   //{path: "",component:AppComponent} esto me duplica el index
 ]
 
@@ -20,6 +24,8 @@ const appRouters:Routes=[
     AppComponent,
     RecetasComponent,
     CarritoComponent,
+    RecetaDetalleComponent,
+    FormCarritoTemplateComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { ingrediente } from "src/Ingrediente.model";
+import { ingrediente } from "src/app/models/Ingrediente.model";
 
 export class Receta{
     private nombre:String;
