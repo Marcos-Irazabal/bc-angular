@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ingrediente } from 'src/Ingrediente.model';
 import { CarroServiceService } from '../carro-service.service';
 import { RecetaServiceService } from '../receta-service.service';
@@ -11,7 +12,7 @@ import { Receta } from '../receta.model';
 })
 export class RecetasComponent {
 
-  constructor(private miServicio:RecetaServiceService) { 
+  constructor(private miServicio:RecetaServiceService, private router:Router) { 
   }
 
 public addToCart(recipe: Receta){
@@ -21,6 +22,10 @@ public addToCart(recipe: Receta){
 public getServiceReceta(){
   return this.miServicio.getItems();
  }
+ /*
+public showDetails(indice:number){
+  this.router.navigate(["recetas/detalles"],{queryParams: {id:Number} })
+}*/
 
  /*
  input_name:String;

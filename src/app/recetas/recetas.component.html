@@ -4,7 +4,7 @@
             <ul><label >Recetas</label>
                 <li *ngFor="let receta of this.getServiceReceta();let i=index"> 
                     <form>
-                        <p> <a routerLink="recetas/detalle" >{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
+                        <p> <a [routerLink]='["detalles",i]' [queryParams]="{indicehtml:i}" >{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
                         <button type="submit" class="btn btn-primary" (click)="addToCart(receta)">Agregar al carrito</button>
                     </form>
                     <!--<img [src]="receta.getFotoUrl()">      -->
@@ -12,7 +12,8 @@
             </ul>
         </div>
         <div class="col-6">
-            <app-receta-detalle></app-receta-detalle>
+            <router-outlet></router-outlet>
+            <!--<app-receta-detalle></app-receta-detalle> -->
         </div>
     </div>
 </div>
@@ -25,4 +26,4 @@
     
 </form>
 -->
-<router-outlet></router-outlet>
+

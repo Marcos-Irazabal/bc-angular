@@ -1,4 +1,14 @@
 <p>receta-detalle works!</p>
-<div *ngIf="show()" class="container">
-    <P>In detalle</P>
+<div class="container" *ngIf="show()"> <!-- de esta forma logre que se actualice la receta IRT -->
+    <div class="col">
+        <div class="row-6">
+            <img src="{{recetaActual.getFotoUrl()}}" alt="auto">
+        </div>
+        <div class="row-6">
+            <p>la receta: {{recetaActual.getNombre()}}</p>
+        </div>
+        <div class="row-6">
+            <button class="btn btn-primary">Agregar al carro</button>
+        </div>
+    </div>
 </div>
