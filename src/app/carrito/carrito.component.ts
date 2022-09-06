@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ingrediente } from 'src/app/models/Ingrediente.model';
 import { CarroServiceService } from '../services/carro-service.service';
 
 @Component({
@@ -13,25 +12,9 @@ export class CarritoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    }
+  }
 
- input_cant:number;
- input_name:String;
-
- public agregarItem(){ 
-    let item = new ingrediente(this.input_name,this.input_cant)
-    this.miServicio.addItem(item);
- }
- 
  public getServiceCarro(){
   return this.miServicio.getItems();
  }
-
- public mostrarArray(){
-  this.miServicio.mostrarArray();
- }
-
-
-
-
 }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
 import { RecetaServiceService } from "src/app/services/receta-service.service";
 import { Receta } from '../models/receta.model';
 
@@ -10,31 +9,14 @@ import { Receta } from '../models/receta.model';
 })
 export class RecetasComponent {
 
-  constructor(private miServicio:RecetaServiceService, private router:Router) { 
+  constructor(private miServicio:RecetaServiceService) { 
   }
 
 public addToCart(recipe: Receta){
   this.miServicio.addToCarrito(recipe);
 }
 
-
-
 public getServiceReceta(){
   return this.miServicio.getItems();
  }
- /*
-public showDetails(indice:number){
-  this.router.navigate(["recetas/detalles"],{queryParams: {id:Number} })
-}*/
-
- /*
- input_name:String;
- input_url:"https://elfogongaucho.com.ar/fogon/wp-content/uploads/2021/08/mila-con-frita.jpg";
- input_descripcion:String;
-
- public agregarReceta(){
-    this.miServicio.addItem(new Receta(this.input_name,this.input_url,this.input_descripcion,this.ingredientesManzana));
- }
-*/
-
 }

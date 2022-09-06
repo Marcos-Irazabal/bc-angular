@@ -16,14 +16,12 @@ export class RecetaServiceService {
  constructor(private servicioCarro:CarroServiceService) { 
  }
 
-
-
   addItem(item:Receta){
     this.recipes.push(item);
   }
 
   addToCarrito(recipe:Receta){
-    this.servicioCarro.addIngredientes(recipe);
+    this.servicioCarro.addIngredientesDeReceta(recipe);
   }
 
   getItems(){

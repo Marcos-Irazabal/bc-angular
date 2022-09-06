@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
-import { ingrediente } from 'src/app/models/Ingrediente.model';
 import { CarroServiceService } from 'src/app/services/carro-service.service';
 
 @Component({
@@ -10,13 +9,18 @@ import { CarroServiceService } from 'src/app/services/carro-service.service';
 })
 export class FormCarritoTemplateComponent implements OnInit {
 
+  input_text:String="";
+  input_cant:number;
   constructor(private miServicio:CarroServiceService) { }
-  items= this.miServicio.getItems();
   ngOnInit(): void {
   }
 
   addItem(form: NgForm){
-    this.miServicio.agregarItem(form.value.input_text,form.value.input_cant); 
+    this.input_text=form.value.input_text;
+    this.input_cant=form.value.input_cant;
+    this.miServicio.agregarItem(this.input_text,this.input_cant); 
   }
+
+
 
 }

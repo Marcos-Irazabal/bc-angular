@@ -1,0 +1,5 @@
+<form [formGroup]="formularioGrupo" (ngSubmit)="addItem()">
+     Nuevo ingrediente:<input type="text" formControlName="nombre">
+    <label>Cantidad:</label> <input type="number" formControlName="cantidad">
+    <button type="submit" [disabled]="formularioGrupo.invalid" class="btn btn-primary" >Agregar</button>
+</form>

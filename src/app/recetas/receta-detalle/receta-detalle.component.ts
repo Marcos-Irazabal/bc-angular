@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
 import { RecetaServiceService } from 'src/app/services/receta-service.service';
 import { Receta } from 'src/app/models/receta.model';
 
@@ -19,7 +18,6 @@ export class RecetaDetalleComponent implements OnInit{
   recetas:Receta[];
   recetaActual:Receta;
 
-  private sujetoReceta$:Subject<Receta>;
 
   ngOnInit(): void {
     this.indice = this.route.snapshot.params["id"]; //parametro simple por url
