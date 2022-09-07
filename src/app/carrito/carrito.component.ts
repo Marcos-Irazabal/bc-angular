@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { CarroServiceService } from '../services/carro-service.service';
 
 @Component({
@@ -6,12 +6,18 @@ import { CarroServiceService } from '../services/carro-service.service';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit,OnChanges {
 
+  cantItemsEnCarro:number;
   constructor(private miServicio:CarroServiceService) { 
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnChanges(){
+    this.miServicio.getSujeto$().subscribe( num => {this.cantItemsEnCarro = num})
   }
 
  public getServiceCarro(){

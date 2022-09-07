@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { ingrediente } from 'src/app/models/Ingrediente.model';
 import { Receta } from '../models/receta.model';
 
@@ -8,6 +9,8 @@ import { Receta } from '../models/receta.model';
 export class CarroServiceService {
 
   items: ingrediente[]
+  sujeto$: Subject<number>;
+  
 
   constructor() {
     this.items= [ new ingrediente("Manzana ejemplo",1), new ingrediente("Azucar ejemplo",2) ];
@@ -59,6 +62,15 @@ export class CarroServiceService {
         this.agregarItem(i.getNombre(),i.getCantidad());
     }
   } 
+
+  deleteItems(){
+    this.items=[];
+    this.sujeto$.next(this.getItems.length);
+  }
+
+  getSujeto$():Observable<number>{
+    return this.sujeto$.asObservable();
+  }
 
 
 

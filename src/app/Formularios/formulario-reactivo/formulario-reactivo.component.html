@@ -1,5 +1,9 @@
-<form [formGroup]="formularioGrupo" (ngSubmit)="addItem()">
-     Nuevo ingrediente:<input type="text" formControlName="nombre">
-    <label>Cantidad:</label> <input type="number" formControlName="cantidad">
-    <button type="submit" [disabled]="formularioGrupo.invalid" class="btn btn-primary" >Agregar</button>
+<form [formGroup]="formularioGrupo">
+    Nuevo ingrediente:<input type="text" formControlName="nombre">
+    Cantidad:<input type="number" formControlName="cantidad">
+
+    <button (click)="addItem()" [disabled]="formularioGrupo.invalid" class="btn btn-success" >Agregar</button>
+    
+    <button (click)="clearForm()" class="btn btn-primary" >Limpiar</button> <!--falta ver como deshabilitarlo-->
+
 </form>

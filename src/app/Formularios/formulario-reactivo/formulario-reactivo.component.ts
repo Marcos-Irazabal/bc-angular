@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { CarroServiceService } from 'src/app/services/carro-service.service';
 
 @Component({
@@ -8,7 +9,6 @@ import { CarroServiceService } from 'src/app/services/carro-service.service';
   styleUrls: ['./formulario-reactivo.component.css']
 })
 export class FormularioReactivoComponent implements OnInit {
-
   formularioGrupo:FormGroup; //mismo nombre q le pusimos en el html
 
   constructor(private fb:FormBuilder, private miServicio:CarroServiceService) { 
@@ -20,9 +20,20 @@ export class FormularioReactivoComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    // this.miServicio.getSujeto$().subscribe(b => {this.poseeItems=(b>0)})
+   }
+
 
   addItem(){
     this.miServicio.agregarItem(this.formularioGrupo.value.nombre,this.formularioGrupo.value.cantidad); 
   }
+
+  clearForm(){
+    if(window.confirm("Borrar todos los items del carro?")){
+      this.miServicio.deleteItems();
+    }
+  }
+
+
 }
