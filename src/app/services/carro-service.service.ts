@@ -9,11 +9,12 @@ import { Receta } from '../models/receta.model';
 export class CarroServiceService {
 
   items: ingrediente[]
-  sujeto$: Subject<number>;
+  sujeto$: Subject<boolean>;
   
 
   constructor() {
-    this.items= [ new ingrediente("Manzana ejemplo",1), new ingrediente("Azucar ejemplo",2) ];
+   // this.items= [ new ingrediente("Manzana ejemplo",1), new ingrediente("Azucar ejemplo",2) ];
+   this.items=[];
   } 
 
   pushItem(item:ingrediente){
@@ -58,17 +59,17 @@ export class CarroServiceService {
   }
 
   addIngredientesDeReceta(recipe:Receta){
-    for (let i of recipe.getIngredientes()){
-        this.agregarItem(i.getNombre(),i.getCantidad());
+    for (let i of recipe.ingredientes){
+        this.agregarItem(i.nombre,i.cantidad);
     }
   } 
 
   deleteItems(){
     this.items=[];
-    this.sujeto$.next(this.getItems.length);
+    this.sujeto$.next(false);
   }
 
-  getSujeto$():Observable<number>{
+  getSujeto$():Observable<boolean>{
     return this.sujeto$.asObservable();
   }
 

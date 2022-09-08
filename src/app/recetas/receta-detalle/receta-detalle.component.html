@@ -1,11 +1,11 @@
 <p>receta-detalle works!</p>
-<div class="container" *ngIf="show()"> <!-- de esta forma logre que se actualice la receta IRT -->
+<div class="container" *ngIf="show()"> 
     <div class="col">
         <div class="row-6">
-            <img src="{{recetaActual.getFotoUrl()}}" alt="auto">
+            <img src="{{recetaActual.foto_url}}" >
         </div>
         <div class="row-6">
-            <p>la receta: {{recetaActual.getNombre()}}</p>
+            <p>la receta: {{recetaActual.nombre}}</p>
         </div>
         <div class="row-6">
             <button class="btn btn-primary" (click)="addToCart()">Agregar al carro</button>

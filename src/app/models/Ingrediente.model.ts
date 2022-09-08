@@ -1,6 +1,6 @@
 export class ingrediente{
-    private nombre:String;
-    private cantidad:number;
+    nombre:String;
+    cantidad:number;
 
     constructor(n:String,c:number){
         this.cantidad=c;

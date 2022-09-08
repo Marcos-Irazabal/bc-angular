@@ -1,8 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecetaServiceService } from 'src/app/services/receta-service.service';
 import { Receta } from 'src/app/models/receta.model';
-
 
 @Component({
   selector: 'app-receta-detalle',
@@ -11,21 +10,17 @@ import { Receta } from 'src/app/models/receta.model';
 })
 export class RecetaDetalleComponent implements OnInit{
 
-  constructor(private route:ActivatedRoute, private servicioRecetas:RecetaServiceService) { }
+  constructor(private route:ActivatedRoute, private miServicio:RecetaServiceService) { 
 
-  indiceQuery:number;
-  indice:number;
+  }
   recetas:Receta[];
   recetaActual:Receta;
-
+  indiceQuery:number;
 
   ngOnInit(): void {
-    this.indice = this.route.snapshot.params["id"]; //parametro simple por url
-
-    this.indiceQuery = this.route.snapshot.queryParams["indicehtml"]; // parametro por queryparams
-
-    this.recetas= this.servicioRecetas.getItems();
-    this.recetaActual = this.recetas[this.indice];
+    this.recetas=this.miServicio.getItems();
+    this.indiceQuery = this.route.snapshot.queryParams["indicehtml"];
+    this.recetaActual=this.recetas[this.indiceQuery];
   }
 
   show(){ //actualizacion In Real Time
@@ -34,13 +29,7 @@ export class RecetaDetalleComponent implements OnInit{
   }
 
   public addToCart(){
-    this.servicioRecetas.addToCarrito(this.recetaActual);
+    this.miServicio.addToCarrito(this.recetaActual);
   }
-
-
-
-
-  
-
 
 }

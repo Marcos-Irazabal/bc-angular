@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-6">
             <ul><label >Recetas</label>
-                <li *ngFor="let receta of this.getServiceReceta();let i=index"> 
+                <li *ngFor="let receta of this.recipes;let i=index"> 
                     <form>
-                        <p> <a [routerLink]='["detalles",i]' [queryParams]="{indicehtml:i}" >{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
+                        <p> <a [routerLink]='["detalles"]' [queryParams]="{indicehtml:i}" >{{receta.nombre}}</a> {{receta.descripcion}}</p> 
                     </form>
                 </li>
             </ul>
@@ -14,13 +14,10 @@
         </div>
     </div>
 </div>
+
 <hr>
-<!-- <form>
-    <label>Nueva Receta: </label><input type="text" [(ngModel)]="input_name" name="input_name" >
-    <label>Descripcion:</label> <input type="text" [(ngModel)]="input_descripcion" name="input_descripcion">
-    
-    <button type="submit" class="btn btn-primary" (click)="agregarReceta()" >Agregar</button>
-    
-</form>
--->
+
+<button (click)="uploadRecipes()" >agregar recetas a BD</button>
+<button (click)="downloadRecipes()" >cargar recetas de la BD</button>
+
 

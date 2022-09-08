@@ -10,11 +10,12 @@ import { CarroServiceService } from './services/carro-service.service';
 import { RecetaDetalleComponent } from './recetas/receta-detalle/receta-detalle.component';
 import { FormCarritoTemplateComponent } from './Formularios/form-carrito-template/form-carrito-template.component';
 import { FormularioReactivoComponent } from './Formularios/formulario-reactivo/formulario-reactivo.component';
+import {HttpClientModule} from "@angular/common/http";
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent},
   {path: "recetas",component:RecetasComponent, 
-  children:[{path: "detalles/:id",component:RecetaDetalleComponent}]
+  children:[{path: "detalles",component:RecetaDetalleComponent}]
   }
   //{path: "",component:AppComponent} esto me duplica el index
 ]
@@ -34,6 +35,7 @@ const appRouters:Routes=[
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRouters),
+    HttpClientModule
 
   ],
   providers: [CarroServiceService],
