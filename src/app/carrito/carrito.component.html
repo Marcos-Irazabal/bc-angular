@@ -2,11 +2,26 @@
  template
 <app-form-carrito-template></app-form-carrito-template>
  -->
+ <!--
 <div class="container"><app-formulario-reactivo></app-formulario-reactivo></div>
 <hr>
 <div class="container">
     <ul> 
-        <li *ngFor="let ite of this.getServiceCarro();let i=index"> {{ite.getNombre()}} ({{ite.getCantidad()}})</li>
+        <li *ngFor="let ite of this.getServiceCarro();let i=index"> <a [routerLink]="['carritoDetalle']">{{ite.getNombre()}}</a> ({{ite.getCantidad()}})</li>
     </ul>
 </div>
 <button (click)="generateOrder()" >Generar Orden de Compra</button>
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <ul><label >Ingredientes:</label>
+                <li *ngFor="let ite of this.getServiceCarro();let i=index" > <a [routerLink]="['carritoDetalle']" [queryParams]="{indicehtml:i}" >{{ite.getNombre()}}</a> ({{ite.getCantidad()}})</li>
+            </ul>
+            <button (click)="generateOrder()" >Generar Orden de Compra</button>
+        </div>
+        <div class="col-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>

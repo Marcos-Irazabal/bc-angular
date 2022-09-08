@@ -11,9 +11,13 @@ import { RecetaDetalleComponent } from './recetas/receta-detalle/receta-detalle.
 import { FormCarritoTemplateComponent } from './Formularios/form-carrito-template/form-carrito-template.component';
 import { FormularioReactivoComponent } from './Formularios/formulario-reactivo/formulario-reactivo.component';
 import {HttpClientModule} from "@angular/common/http";
+import { CarritoDetalleComponent } from './carrito/carrito-detalle/carrito-detalle.component';
+import { CommonModule } from '@angular/common';
 
 const appRouters:Routes=[
-  {path: "carrito",component:CarritoComponent},
+  {path: "carrito",component:CarritoComponent,
+  children:[{path: "carritoDetalle",component:CarritoDetalleComponent}]
+  },
   {path: "recetas",component:RecetasComponent, 
   children:[{path: "detalles",component:RecetaDetalleComponent}]
   }
@@ -29,8 +33,10 @@ const appRouters:Routes=[
     RecetaDetalleComponent,
     FormCarritoTemplateComponent,
     FormularioReactivoComponent,
+    CarritoDetalleComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
