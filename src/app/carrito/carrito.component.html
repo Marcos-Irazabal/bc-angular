@@ -2,23 +2,15 @@
  template
 <app-form-carrito-template></app-form-carrito-template>
  -->
-<div class="container"><app-formulario-reactivo></app-formulario-reactivo></div>
-<hr>
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <ul><label >Ingredientes:</label>
-                <li *ngFor="let ite of this.getServiceCarro();let i=index" > <a [routerLink]="['carritoDetalle']" [queryParams]="{indicehtml:i}" >{{ite.getNombre()}}</a> ({{ite.getCantidad()}})</li>
-            </ul>
-            <button (click)="generateOrder()" >Generar Orden de Compra</button>
-        </div>
-        <div class="col-6">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+<div class="row">
+    <div class="col-8"><app-formulario-reactivo></app-formulario-reactivo></div>
 
-<!--TEXTEANDO
-    <div class="row">
+    <div class="col-4" ><button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button></div>
+</div>
+
+<hr>
+
+<div class="row">
     <div class="col-6">
         <ul>
             <div class="list-group">
@@ -27,9 +19,26 @@
                 </li>    
             </div>
         </ul>
+        <button class="btn btn-primary" [disabled]="showDeleteAll" (click)="generateOrder()" >Generar Orden de Compra</button>
     </div>
     <div class="col-6">
-        <router-outlet></router-outlet>
+        <div class="container" *ngIf="showDetalles">
+
+            <div class="col">
+                <div class="row-6">
+                    <p>Ingrediente actual: {{ingredienteActual.nombre}}</p>
+                </div>
+                <div class="row-6">
+                    <form>
+                        Cantidad: <input type="number" [(ngModel)]="cantActual" name="cantActual">
+                        <br>
+                        <button class="btn btn-success" (click)="actualizarIngrediente()">Actualizar informacion</button>
+                        <button class="btn btn-danger" (click)="deleteIngrediente()">Eliminar Ingrediente</button>
+                        
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
--->

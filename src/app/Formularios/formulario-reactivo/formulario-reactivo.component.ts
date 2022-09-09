@@ -28,12 +28,12 @@ export class FormularioReactivoComponent implements OnInit {
   addItem(){
     this.miServicio.agregarItem(this.formularioGrupo.value.nombre,this.formularioGrupo.value.cantidad); 
   }
-
+/*
   clearForm(){
     if(window.confirm("Borrar todos los items del carro?")){
       this.miServicio.deleteItems();
     }
   }
-
+*/
 
 }

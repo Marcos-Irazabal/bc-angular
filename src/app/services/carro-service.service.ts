@@ -15,6 +15,7 @@ export class CarroServiceService {
   constructor() {
    // this.items= [ new ingrediente("Manzana ejemplo",1), new ingrediente("Azucar ejemplo",2) ];
    this.items=[];
+   this.sujeto$=new Subject();
   } 
 
   pushItem(item:ingrediente){

@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ingrediente } from '../models/Ingrediente.model';
 import { OrdenCompra } from '../models/OrdenCompra';
 import { CarroServiceService } from '../services/carro-service.service';
 import { DataService } from '../services/data.service';
@@ -13,32 +14,75 @@ export class CarritoComponent implements OnInit,OnChanges {
 
   arrayAux:Array<OrdenCompra>=[];
 
-  HayItemsEnCarro:boolean;
+
+  ingredienteActual:ingrediente;
+  cantActual:number;
+  indiceActual:number;
+  showDetalles:boolean=false;
+  listaIngredientes:ingrediente[];
+  showDeleteAll:boolean=true;
+
+
+
+ 
   constructor(private miServicio:CarroServiceService, private servicioHttp:DataService, private router:Router) { 
   }
 
   ngOnInit(): void {
+    this.listaIngredientes=this.miServicio.getItems();
+    if(this.listaIngredientes.length > 0){this.showDeleteAll=false;}
+
+    this.servicioHttp.descargarOrdenesCompra().subscribe(act => {
+      this.arrayAux=Object.values(act);
+    })
   }
 
   ngOnChanges(){
-    this.miServicio.getSujeto$().subscribe( bool => {this.HayItemsEnCarro = bool})
-    if (this.HayItemsEnCarro){this.arrayAux= []}
+    this.miServicio.getSujeto$().subscribe( bool => {this.showDetalles = bool})
+    if (this.showDetalles){this.router.navigate(["carrito"])}
+    if(this.listaIngredientes.length > 0){this.showDeleteAll=false;}
+   
   }
 
  public getServiceCarro(){
-  return this.miServicio.getItems();
+  let ing =this.miServicio.getItems();
+  if(ing.length > 0){this.showDeleteAll=false;}
+  return ing;
  }
 
  generateOrder(){
   this.arrayAux.push(new OrdenCompra(this.miServicio.getItems()));
   this.servicioHttp.subirOrdenCompra(this.arrayAux);
-  this.arrayAux=[];
+  //this.arrayAux=[];
+  this.miServicio.deleteItems();
+  this.showDetalles=false;
+  this.showDeleteAll=true;
 }
 
 selectItem(i:number){
-  console.log("nice"+i);
- this.router.navigate(["carritoDetalle"],{queryParams:{indicehtml:i}})
+  this.ingredienteActual=this.miServicio.items[i];
+  this.showDetalles=true;
+  this.indiceActual=i;
 }
 
+
+deleteIngredientes(){
+  if(window.confirm("Borrar todos los items del carro?")){
+    this.miServicio.deleteItems();
+    this.showDetalles=false;
+    this.showDeleteAll=true;
+  }
+}
+
+
+deleteIngrediente(){
+  this.listaIngredientes.splice(this.indiceActual,1);
+  this.showDetalles=false;
+}
+
+actualizarIngrediente(){
+  this.miServicio.items[this.indiceActual].cantidad=this.cantActual;
+  this.showDetalles=false;
+}
 
 }

@@ -28,6 +28,10 @@ export class DataService {
     return this.http.get<Receta[]>("https://recetas-bc-angular-default-rtdb.firebaseio.com/recetas.json");
   }
 
+  descargarOrdenesCompra(){
+    return this.http.get<OrdenCompra[]>("https://recetas-bc-angular-default-rtdb.firebaseio.com/ordenes.json");
+  }
+
 
 
 }
