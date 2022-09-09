@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ingrediente } from 'src/app/models/Ingrediente.model';
 import { CarroServiceService } from 'src/app/services/carro-service.service';
 
@@ -16,7 +16,7 @@ export class CarritoDetalleComponent implements OnInit {
 
   cantActual:number;
 
-  constructor(private carroService:CarroServiceService, private route:ActivatedRoute) { }
+  constructor(private carroService:CarroServiceService, private route:ActivatedRoute, private router:Router) { }
 
 
 
@@ -36,6 +36,14 @@ export class CarritoDetalleComponent implements OnInit {
   deleteIngrediente(){
     this.listaIngredientes.splice(this.indiceQuery,1);
     console.log(this.listaIngredientes);
+    this.router.navigate(["carrito"]);
   }
+
+  actualizarIngrediente(){
+    this.carroService.items[this.indiceQuery].cantidad=this.cantActual;
+    this.router.navigate(["carrito"]);
+  }
+
+
   
 }
