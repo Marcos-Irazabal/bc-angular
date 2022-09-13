@@ -26,11 +26,13 @@ interface peticion{
 
 
 export class LoginServiceService {
-
+  private tokenExpirationTimer: any;
   sujetoUsuario= new Subject<user>();
   token:String=null;
 
-  constructor(private http:HttpClient, private router:Router) { }
+  logged:boolean=false;
+
+  constructor(private http:HttpClient, private router:Router) { this.logged=false;}
 
   login(correo:String,pass:String){
     let aux:peticion= {email:correo,password:pass,returnSecureToken:true}
@@ -68,12 +70,35 @@ export class LoginServiceService {
         expirationDate);
       this.sujetoUsuario.next(usuario);
       this.token=token;
+    localStorage.setItem("DatosDelUsuario",JSON.stringify(usuario));
+    this.logged=true;
   }
 
   logout() {
     this.sujetoUsuario.next(null);
-    localStorage.removeItem('userData');
+    localStorage.removeItem('DatosDelUsuario');
+    this.logged=false;
     this.router.navigate(['/login']);
+}
+
+autoLogin(){
+  let datosUsu: {email:String,password:String,_token:String,_tokenExpirationDate:string} = JSON.parse(localStorage.getItem("DatosDelUsuario"));
+  if (!datosUsu){
+    return
+  }
+  let usuarioCargado = new user(datosUsu.email,datosUsu.password,datosUsu._token,new Date(datosUsu._tokenExpirationDate));
+  if (usuarioCargado.getToken()) {
+    this.sujetoUsuario.next(usuarioCargado);
+    this.logged=true;
+    const expirationDuration = new Date(datosUsu._tokenExpirationDate).getTime() - new Date().getTime();
+    this.autoLogout(expirationDuration); 
+};
+}
+
+autoLogout(expirationDuration: number) {
+  this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+  }, expirationDuration)
 }
 
 }

@@ -23,6 +23,7 @@ export class AppComponent implements OnInit,OnDestroy {
     this.subUsuario=this.loginService.sujetoUsuario.subscribe(usuario =>
       this.sesionIniciada= !usuario ? false:true
       );
+    this.loginService.autoLogin();
   }
 
   ngOnDestroy(): void {

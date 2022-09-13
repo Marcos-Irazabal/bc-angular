@@ -16,13 +16,16 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { SpinnerComponent } from './Shared/spinner/spinner.component';
 import { SpinnerInterceptorInterceptor } from './Shared/spinner/spinner-interceptor.interceptor';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent,
-  children:[{path: "carritoDetalle",component:CarritoDetalleComponent}]
+  children:[{path: "carritoDetalle",component:CarritoDetalleComponent}],
+  canActivate:[AuthGuardGuard]
   },
   {path: "recetas",component:RecetasComponent, 
-  children:[{path: "detalles",component:RecetaDetalleComponent}]
+  children:[{path: "detalles",component:RecetaDetalleComponent}],
+  canActivate:[AuthGuardGuard]
   },
   {path: "login",component:LoginComponent}
   //{path: "",component:AppComponent} esto me duplica el index
