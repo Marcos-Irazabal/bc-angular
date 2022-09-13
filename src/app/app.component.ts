@@ -20,12 +20,12 @@ export class AppComponent implements OnInit,OnDestroy {
   
 
   ngOnInit(): void {
-    console.log("init del appComponent"+this.loginService.token) //llega null
-    this.subUsuario=this.loginService.sujetoUsuario.subscribe(usuario =>
+    console.log("init del appComponent"+this.loginService.token) 
+    this.subUsuario=this.loginService.sujetoUsuario.subscribe(usuario => {console.log("llegaaaaaaaa "+usuario);
       this.sesionIniciada= !usuario ? false:true
-      );
+  });
     
-    this.loginService.autoLogin();
+     this.loginService.autoLogin();
   }
 
   ngOnDestroy(): void {

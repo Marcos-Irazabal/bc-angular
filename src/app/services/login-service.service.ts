@@ -80,6 +80,8 @@ export class LoginServiceService {
     localStorage.removeItem('DatosDelUsuario');
     this.logged=false;
     this.router.navigate(['/login']);
+    if (this.tokenExpirationTimer) clearTimeout(this.tokenExpirationTimer);
+        this.tokenExpirationTimer = null;
 }
 
 autoLogin(){
@@ -92,6 +94,9 @@ autoLogin(){
   if (usuarioCargado.getToken()) {
     this.sujetoUsuario.next(usuarioCargado);
     this.logged=true;
+
+    this.token=usuarioCargado.getToken();//con esto no me rompe mas las peticiones pero ahora me cierra la sesion
+
     const expirationDuration = new Date(datosUsu._tokenExpirationDate).getTime() - new Date().getTime();
     this.autoLogout(expirationDuration); 
 };

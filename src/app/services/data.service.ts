@@ -41,6 +41,7 @@ export class DataService {
 
   descargarObjetos(){
     const token =this.authService.token;
+    console.log("descargar objetos log, el token es = "+token)
     return this.http.get<string[]>("https://recetas-bc-angular-default-rtdb.firebaseio.com/objetos.json?auth="+token);
   }
 
