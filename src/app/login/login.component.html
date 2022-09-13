@@ -1,4 +1,8 @@
 <p>login works!</p>
+<div class="alert alert-danger" *ngIf="error" text-align: center>
+    <p>{{error}}</p>
+</div> 
+
 <form [formGroup]="formulario" (ngSubmit)="formAction()">
 
     <div>

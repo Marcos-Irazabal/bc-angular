@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { RecetaServiceService } from "src/app/services/receta-service.service";
 import { ingrediente } from '../models/Ingrediente.model';
 import { Receta } from '../models/receta.model';

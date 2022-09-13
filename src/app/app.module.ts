@@ -10,10 +10,12 @@ import { CarroServiceService } from './services/carro-service.service';
 import { RecetaDetalleComponent } from './recetas/receta-detalle/receta-detalle.component';
 import { FormCarritoTemplateComponent } from './Formularios/form-carrito-template/form-carrito-template.component';
 import { FormularioReactivoComponent } from './Formularios/formulario-reactivo/formulario-reactivo.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { CarritoDetalleComponent } from './carrito/carrito-detalle/carrito-detalle.component';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { SpinnerComponent } from './Shared/spinner/spinner.component';
+import { SpinnerInterceptorInterceptor } from './Shared/spinner/spinner-interceptor.interceptor';
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent,
@@ -37,6 +39,7 @@ const appRouters:Routes=[
     FormularioReactivoComponent,
     CarritoDetalleComponent,
     LoginComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,7 @@ const appRouters:Routes=[
     HttpClientModule
 
   ],
-  providers: [CarroServiceService],
+  providers: [CarroServiceService, {provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
