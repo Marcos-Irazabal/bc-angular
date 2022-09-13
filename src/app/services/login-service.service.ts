@@ -95,7 +95,7 @@ autoLogin(){
     this.sujetoUsuario.next(usuarioCargado);
     this.logged=true;
 
-    this.token=usuarioCargado.getToken();//con esto no me rompe mas las peticiones pero ahora me cierra la sesion
+    this.token=usuarioCargado.getToken();//con esto no me rompe mas las peticiones 
 
     const expirationDuration = new Date(datosUsu._tokenExpirationDate).getTime() - new Date().getTime();
     this.autoLogout(expirationDuration); 
