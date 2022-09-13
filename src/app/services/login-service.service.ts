@@ -61,15 +61,16 @@ export class LoginServiceService {
   }
 
 
-  handleAuth(email:String, userId:String, token:String, expiracion:String){
+  handleAuth(email:String, userId:String, tokencito:String, expiracion:String){
+    console.log("handla AUTH "+tokencito);
     const expirationDate= new Date(new Date().getTime() + +expiracion * 1000);
       let usuario= new user(
         email,
         userId,
-        token,
+        tokencito,
         expirationDate);
       this.sujetoUsuario.next(usuario);
-      this.token=token;
+      this.token=tokencito;
     localStorage.setItem("DatosDelUsuario",JSON.stringify(usuario));
     this.logged=true;
   }
@@ -84,7 +85,8 @@ export class LoginServiceService {
 autoLogin(){
   let datosUsu: {email:String,password:String,_token:String,_tokenExpirationDate:string} = JSON.parse(localStorage.getItem("DatosDelUsuario"));
   if (!datosUsu){
-    return
+    console.log("no hay usuario");
+    return 
   }
   let usuarioCargado = new user(datosUsu.email,datosUsu.password,datosUsu._token,new Date(datosUsu._tokenExpirationDate));
   if (usuarioCargado.getToken()) {
