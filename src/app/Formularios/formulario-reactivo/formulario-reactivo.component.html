@@ -1,5 +1,8 @@
 <form [formGroup]="formularioGrupo">
-    Nuevo ingrediente:<input type="text" formControlName="nombre">
+    <!--Nuevo ingrediente:<input type="text" formControlName="nombre"> -->
+    Nuevo ingrediente: <select name="objetoIngrediente" id="objetoIngrediente" formControlName="nombre">
+        <option type="text" *ngFor="let obj of this.objetosOpciones;let i=index" value="{{this.objetosOpciones[i]}}" >{{this.objetosOpciones[i]}}</option>
+    </select>
     Cantidad:<input type="number" formControlName="cantidad">
 
     <button (click)="addItem()" [disabled]="formularioGrupo.invalid" class="btn btn-success" >Agregar</button>

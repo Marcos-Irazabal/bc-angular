@@ -22,7 +22,7 @@ export class CarritoComponent implements OnInit,OnChanges {
   listaIngredientes:ingrediente[];
   showDeleteAll:boolean=true;
 
-
+  objetos= new Array<string>;
 
  
   constructor(private miServicio:CarroServiceService, private servicioHttp:DataService, private router:Router) { 
@@ -35,6 +35,9 @@ export class CarritoComponent implements OnInit,OnChanges {
     this.servicioHttp.descargarOrdenesCompra().subscribe(act => {
       this.arrayAux=Object.values(act);
     })
+
+    this.objetos=null;
+    this.servicioHttp.descargarObjetos().subscribe(objs => {console.log(objs); this.objetos=objs});
   }
 
   ngOnChanges(){

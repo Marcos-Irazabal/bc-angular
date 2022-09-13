@@ -3,7 +3,7 @@
 <app-form-carrito-template></app-form-carrito-template>
  -->
 <div class="row">
-    <div class="col-8"><app-formulario-reactivo></app-formulario-reactivo></div>
+    <div class="col-8"><app-formulario-reactivo [objetosOpciones]="this.objetos"></app-formulario-reactivo></div>
 
     <div class="col-4" ><button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button></div>
 </div>

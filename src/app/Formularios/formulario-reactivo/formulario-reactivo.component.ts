@@ -9,6 +9,7 @@ import { CarroServiceService } from 'src/app/services/carro-service.service';
   styleUrls: ['./formulario-reactivo.component.css']
 })
 export class FormularioReactivoComponent implements OnInit {
+  @Input() objetosOpciones:Array<string>;
   formularioGrupo:FormGroup; //mismo nombre q le pusimos en el html
 
   constructor(private fb:FormBuilder, private miServicio:CarroServiceService) { 

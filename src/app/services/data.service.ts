@@ -39,6 +39,9 @@ export class DataService {
     return this.http.get<OrdenCompra[]>("https://recetas-bc-angular-default-rtdb.firebaseio.com/ordenes.json?auth="+token);
   }
 
-
+  descargarObjetos(){
+    const token =this.authService.token;
+    return this.http.get<string[]>("https://recetas-bc-angular-default-rtdb.firebaseio.com/objetos.json?auth="+token);
+  }
 
 }

@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { SpinnerComponent } from './Shared/spinner/spinner.component';
 import { SpinnerInterceptorInterceptor } from './Shared/spinner/spinner-interceptor.interceptor';
 import { AuthGuardGuard } from './auth-guard.guard';
+import { ObjetosComponent } from './objetos/objetos.component';
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent,
@@ -27,7 +28,8 @@ const appRouters:Routes=[
   children:[{path: "detalles",component:RecetaDetalleComponent}],
   canActivate:[AuthGuardGuard]
   },
-  {path: "login",component:LoginComponent}
+  {path: "login",component:LoginComponent},
+  {path: "objetos",component:ObjetosComponent}
   //{path: "",component:AppComponent} esto me duplica el index
 ]
 
@@ -43,6 +45,7 @@ const appRouters:Routes=[
     CarritoDetalleComponent,
     LoginComponent,
     SpinnerComponent,
+    ObjetosComponent,
   ],
   imports: [
     CommonModule,
