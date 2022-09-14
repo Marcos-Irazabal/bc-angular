@@ -1,0 +1,18 @@
+<p>carrito detalle works!</p>
+<div class="container" *ngIf="show()"> 
+    <div class="col">
+        <div class="row-6">
+            <p>Ingrediente actual: {{ingredienteActual.nombre}}</p>
+        </div>
+        <div class="row-6">
+            <form>
+                Cantidad: <input type="number" [(ngModel)]="cantActual" name="cantActual">
+                <br>
+                <button class="btn btn-success" (click)="actualizarIngrediente()">Actualizar informacion</button>
+                <button class="btn btn-danger" (click)="deleteIngrediente()">Eliminar Ingrediente</button>
+                
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,22 +1,23 @@
-<p>recetas works!</p>
-
-<form>
-    <label>Nueva Receta: </label><input type="text" [(ngModel)]="input_name" name="input_name" >
-    <label>Descripcion:</label> <input type="text" [(ngModel)]="input_descripcion" name="input_descripcion">
-    
-    <button type="submit" class="button btn-primary" (click)="agregarReceta()" >Agregar</button>
-    
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <ul><label >Recetas</label>
+                <li *ngFor="let receta of this.recipes;let i=index"> 
+                    <form>
+                        <p> <a [routerLink]='["detalles"]' [queryParams]="{indicehtml:i}" >{{receta.nombre}}</a> {{receta.descripcion}}</p> 
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
 
 <hr>
-<p>{{mensaje}}</p>
-<ul><label >Recetas</label>
-    <li *ngFor="let receta of recetas;let i=index"> 
-        <form>
-            <p> <a href="#">{{receta.getNombre()}}</a> {{receta.getDescripcion()}}</p> 
-            <button type="submit" class="button btn-primary" (click)="addToCart(receta.getNombre())">Agregar al carrito</button>
-        </form>
-        <!--<img [src]="receta.getFotoUrl()">                (click)="addToCart(receta)"      -->
-    </li>
-</ul>
+<!--
+<button (click)="uploadRecipes()" >agregar recetas a BD</button>
+<button (click)="downloadRecipes()" >cargar recetas de la BD</button>
+-->
 

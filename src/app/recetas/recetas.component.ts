@@ -1,46 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { ingrediente } from 'src/Ingrediente.model';
-import { MensajeroService } from '../mensajero.service';
-import { Receta } from '../receta.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { RecetaServiceService } from "src/app/services/receta-service.service";
+import { ingrediente } from '../models/Ingrediente.model';
+import { Receta } from '../models/receta.model';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-recetas',
   templateUrl: './recetas.component.html',
   styleUrls: ['./recetas.component.css']
 })
-export class RecetasComponent implements OnInit {
+export class RecetasComponent implements OnInit{
 
-  constructor(private servicioMensaje:MensajeroService) { 
-    this.recetas= [ new Receta("Manzana acaramelada","https://elfogongaucho.com.ar/fogon/wp-content/uploads/2021/08/mila-con-frita.jpg", "tiene mucho azucar", this.auxiliar)];
+  recipes:Array<Receta>;
+
+  constructor(private miServicio:RecetaServiceService, private servicioHttp:DataService) { 
   }
-
   ngOnInit(): void {
-    this.servicioMensaje.mensajeActual.subscribe(mensaje => this.mensaje = mensaje);
-    //this.mensajeString = this.mensaje.getNombre();
-    this.mensajeString = this.mensaje;
+    this.servicioHttp.descargarRecetas().subscribe(recetasBD => {
+      this.recipes=Object.values(recetasBD);
+      this.miServicio.addItems(this.recipes);
+    })
   }
-  //mensaje:Receta;
-  mensaje:String;
-  mensajeString:String;
 
+  getNombre(indice:number){
+    return this.recipes[indice].getNombre();
+   }
+  
 
- auxiliar:ingrediente[]=[(new ingrediente("Manzana ejemplo",1)) , (new ingrediente("Azucar ejemplo",2)) ];
- recetas: Receta[]
- input_name:String;
- input_url:"https://elfogongaucho.com.ar/fogon/wp-content/uploads/2021/08/mila-con-frita.jpg";
- input_descripcion:String;
+public addToCart(recipe: Receta){
+  this.miServicio.addToCarrito(recipe);
+}
 
-
- public agregarReceta(){
-    let item = new Receta(this.input_name,this.input_url,this.input_descripcion,this.auxiliar)
-    this.recetas.push(item);
+public getServiceReceta(){
+  this.recipes= this.miServicio.getItems();
+  return this.recipes;
+  //return this.miServicio.getItems();
  }
 
- /*public addToCart(recipe:Receta){  
-  this.mensaje=recipe;
- } */
+ uploadRecipes(){
+  this.servicioHttp.subirRecetas(this.miServicio.getItems());
+  /* si quiero agregar una mas a la BD
+  let recetitas:Array<Receta> = this.miServicio.getItems();
+  let auxiliar:ingrediente[]=[(new ingrediente("fideos ejemplo",2)) , (new ingrediente(" tuco",1)) ];
+  let receta1: Receta = new Receta("fideos con tuco","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpSrxfwGsZL71RqZIFlcjipXjw-sndtwjqYg&usqp=CAU","como los que hacia tu mama",auxiliar);
+  recetitas.push(receta1);
+  this.servicioHttp.subirRecetas(recetitas);
+  */
+}
 
- public addToCart(recipe:String){  
-  this.mensaje=recipe;
- } 
+ downloadRecipes(){
+  this.servicioHttp.descargarRecetas().subscribe(act => {
+    this.miServicio.recipes=Object.values(act);
+  })
+ }
+
+ 
 }

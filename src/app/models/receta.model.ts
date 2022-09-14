@@ -1,10 +1,10 @@
-import { ingrediente } from "src/Ingrediente.model";
+import { ingrediente } from "src/app/models/Ingrediente.model";
 
 export class Receta{
-    private nombre:String;
-    private foto_url:String;
+     nombre:String;
+     foto_url:String;
     private descripcion:String;
-    private ingredientes:ingrediente[];
+     ingredientes:ingrediente[];
 
     constructor(n:String,f:String,d:String,i:ingrediente[]){
         this.nombre=n;

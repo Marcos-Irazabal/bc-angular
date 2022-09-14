@@ -1,17 +1,44 @@
-<p>carrito works!</p>
+<!-- 
+ template
+<app-form-carrito-template></app-form-carrito-template>
+ -->
+<div class="row">
+    <div class="col-8"><app-formulario-reactivo [objetosOpciones]="this.objetos"></app-formulario-reactivo></div>
 
-<form>
-    <label>Nuevo ingrediente: </label><input type="text" [(ngModel)]="input_name" name="input_name" >
-    <label>Cantidad:</label> <input type="number" [(ngModel)]="input_cant" name="input_cant">
-    <button type="submit" class="button btn-primary" (click)="agregarItem()" >Agregar</button>
-    
-</form>
+    <div class="col-4" ><button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button></div>
+</div>
 
 <hr>
 
-{{mensajeString}}
-<ul>
-    <li *ngFor="let ite of items;let i=index"> {{ite.getNombre()}} ({{ite.getCantidad()}})</li>
-</ul>
+<div class="row">
+    <div class="col-6">
+        <ul>
+            <div class="list-group">
+                <li *ngFor="let ite of this.getServiceCarro();let i=index">
+                    <button type="button" (click)="selectItem(i)" class="list-group-item list-group-item-action">{{ite.getNombre()}} ({{ite.getCantidad()}})</button>
+                </li>    
+            </div>
+        </ul>
+        <button class="btn btn-primary" [disabled]="showDeleteAll" (click)="generateOrder()" >Generar Orden de Compra</button>
+    </div>
+    <div class="col-6">
+        <div class="container" *ngIf="showDetalles">
 
+            <div class="col">
+                <div class="row-6">
+                    <p>Ingrediente actual: {{ingredienteActual.nombre}}</p>
+                </div>
+                <div class="row-6">
+                    <form>
+                        Cantidad: <input type="number" [(ngModel)]="cantActual" name="cantActual">
+                        <br>
+                        <button class="btn btn-success" (click)="actualizarIngrediente()">Actualizar informacion</button>
+                        <button class="btn btn-danger" (click)="deleteIngrediente()">Eliminar Ingrediente</button>
+                        
+                    </form>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
