@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { catchError, Subject, throwError, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { user } from '../models/user.model';
 
 export interface AuthResponseData{
@@ -36,7 +37,7 @@ export class LoginServiceService {
 
   login(correo:String,pass:String){
     let aux:peticion= {email:correo,password:pass,returnSecureToken:true}
-    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBxvVXcuYFNesAYKT6US7vt9Nb-Mp9rXF4",aux)
+    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+environment.firebase_key,aux)
     .pipe(catchError(errorRes =>{
       let mensajeError = "ocurrio un error desconocido";
       switch(errorRes.error.error.message){
@@ -50,7 +51,7 @@ export class LoginServiceService {
 
   signUp(correo:String,pass:String){
     let aux:peticion= {email:correo,password:pass,returnSecureToken:true}
-    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBxvVXcuYFNesAYKT6US7vt9Nb-Mp9rXF4",aux)
+    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+environment.firebase_key,aux)
     .pipe(catchError(errorRes =>{
       let mensajeError = "ocurrio un error desconocido";
       switch(errorRes.error.error.message){

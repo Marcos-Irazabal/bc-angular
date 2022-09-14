@@ -18,6 +18,9 @@ import { SpinnerComponent } from './Shared/spinner/spinner.component';
 import { SpinnerInterceptorInterceptor } from './Shared/spinner/spinner-interceptor.interceptor';
 import { AuthGuardGuard } from './auth-guard.guard';
 import { ObjetosComponent } from './objetos/objetos.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 const appRouters:Routes=[
   {path: "carrito",component:CarritoComponent,
@@ -53,7 +56,8 @@ const appRouters:Routes=[
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRouters),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
 
   ],
   providers: [CarroServiceService, {provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptorInterceptor,multi:true}],
