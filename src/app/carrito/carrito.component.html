@@ -2,16 +2,15 @@
  template
 <app-form-carrito-template></app-form-carrito-template>
  -->
-<div class="row">
+<div class="row-12">
     <div class="col-8"><app-formulario-reactivo [objetosOpciones]="this.objetos"></app-formulario-reactivo></div>
-
-    <div class="col-4" ><button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button></div>
 </div>
 
 <hr>
 
 <div class="row">
     <div class="col-6">
+        <!--
         <ul>
             <div class="list-group">
                 <li *ngFor="let ite of this.getServiceCarro();let i=index">
@@ -19,7 +18,16 @@
                 </li>    
             </div>
         </ul>
+    -->
+        <mat-selection-list #receta [multiple]="false">
+            <mat-list-option *ngFor="let ite of this.getServiceCarro();let i=index" [value]="ite.getNombre()">
+                <a class="botonSpecial" (click)="selectItem(i)" >{{ite.getNombre()}} ({{ite.getCantidad()}})</a>
+            </mat-list-option>
+          </mat-selection-list>
+          
+
         <button class="btn btn-primary" [disabled]="showDeleteAll" (click)="generateOrder()" >Generar Orden de Compra</button>
+        <button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button>
     </div>
     <div class="col-6">
         <div class="container" *ngIf="showDetalles">

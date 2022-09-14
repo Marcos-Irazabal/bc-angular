@@ -1,9 +1,24 @@
 <form [formGroup]="formularioGrupo">
-    <!--Nuevo ingrediente:<input type="text" formControlName="nombre"> -->
+    <!--Nuevo ingrediente:<input type="text" formControlName="nombre"> 
     Nuevo ingrediente: <select name="objetoIngrediente" id="objetoIngrediente" formControlName="nombre">
         <option type="text" *ngFor="let obj of this.objetosOpciones;let i=index" value="{{this.objetosOpciones[i]}}" >{{this.objetosOpciones[i]}}</option>
     </select>
-    Cantidad:<input type="number" formControlName="cantidad">
+-->
+    <mat-form-field appearance="fill">
+        <mat-label>Seleccione Ingrediente</mat-label>
+        <mat-select disableRipple name="objetoIngrediente" id="objetoIngrediente" formControlName="nombre">
+          <mat-option *ngFor="let obj of this.objetosOpciones;let i=index" value="{{this.objetosOpciones[i]}}">{{this.objetosOpciones[i]}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    <!--Cantidad:<input type="number" formControlName="cantidad"> -->
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="cantidad">
+      </mat-form-field>
+
 
     <button (click)="addItem()" [disabled]="formularioGrupo.invalid" class="btn btn-success" >Agregar</button>
     

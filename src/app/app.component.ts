@@ -15,7 +15,7 @@ export class AppComponent implements OnInit,OnDestroy {
 
   subUsuario:Subscription
   sesionIniciada:boolean=false;
-  
+  public isCollapsed = true;
   constructor(private loginService:LoginServiceService){}
   
 

@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <ul><label >Recetas</label>
-                <li *ngFor="let receta of this.recipes;let i=index"> 
-                    <form>
-                        <p> <a [routerLink]='["detalles"]' [queryParams]="{indicehtml:i}" >{{receta.nombre}}</a> {{receta.descripcion}}</p> 
-                    </form>
-                </li>
-            </ul>
+              <mat-selection-list #receta [multiple]="false">
+                <mat-list-option *ngFor="let receta of this.recipes;let i=index" [value]="receta.nombre">
+                    <a class="botonSpecial" [routerLink]='["detalles"]' [queryParams]="{indicehtml:i}" >{{receta.nombre}}</a>
+                </mat-list-option>
+              </mat-selection-list>
+              
+
         </div>
         <div class="col-6">
             <router-outlet></router-outlet>
