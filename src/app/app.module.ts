@@ -19,6 +19,7 @@ import { SpinnerInterceptorInterceptor } from './Shared/spinner/spinner-intercep
 import { AuthGuardGuard } from './auth-guard.guard';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmbellecedorModule } from './embellecedor/embellecedor.module';
 
 
 
@@ -50,14 +51,16 @@ const appRouters:Routes=[
     SpinnerComponent,
     ObjetosComponent,
   ],
-  imports: [
+  imports: [ //modulos que agregamos al proyecto
     CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRouters),
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    EmbellecedorModule
 
   ],
   providers: [CarroServiceService, {provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptorInterceptor,multi:true}],

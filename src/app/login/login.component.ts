@@ -11,6 +11,8 @@ import { AuthResponseData, LoginServiceService } from '../services/login-service
 })
 export class LoginComponent implements OnInit {
 
+  hide = true;
+
   formulario:FormGroup;
   isLoginMode: boolean=true;
   error: String;
@@ -48,6 +50,6 @@ export class LoginComponent implements OnInit {
 }
 
 
-
-
 }
+
+
