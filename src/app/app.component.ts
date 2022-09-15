@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CarritoComponent } from './carrito/carrito.component';
 import { RecetasComponent } from './recetas/recetas.component';
+import { CarroServiceService } from './services/carro-service.service';
 import { LoginServiceService } from './services/login-service.service';
 
 
@@ -12,11 +13,13 @@ import { LoginServiceService } from './services/login-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit,OnDestroy {
+  title = 'PracticaRecetas';
 
   subUsuario:Subscription
   sesionIniciada:boolean=false;
   public isCollapsed = true;
-  constructor(private loginService:LoginServiceService){}
+  cantItems:number=0;
+  constructor(private loginService:LoginServiceService, private carroSvc:CarroServiceService){}
   
 
   ngOnInit(): void {
@@ -26,13 +29,15 @@ export class AppComponent implements OnInit,OnDestroy {
   });
     
      this.loginService.autoLogin();
+
+     this.carroSvc.cantidad$.subscribe(cant => {this.cantItems=cant;console.log("cantidad actual"+cant)});
   }
 
   ngOnDestroy(): void {
     this.subUsuario.unsubscribe();
   }
 
-  title = 'PracticaRecetas';
+
   
   logOut(){
     this.loginService.logout();

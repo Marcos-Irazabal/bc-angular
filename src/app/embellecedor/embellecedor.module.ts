@@ -14,6 +14,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -34,6 +35,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
+    MatBadgeModule,
   ],
   exports:[
     MatSliderModule,
@@ -48,6 +50,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
+    MatBadgeModule,
   ]
 })
 export class EmbellecedorModule { }

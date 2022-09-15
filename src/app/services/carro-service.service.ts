@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ingrediente } from 'src/app/models/Ingrediente.model';
 import { Receta } from '../models/receta.model';
 
@@ -10,12 +10,14 @@ export class CarroServiceService {
 
   items: ingrediente[]
   sujeto$: Subject<boolean>;
+  cantidad$:BehaviorSubject<number>;
   
 
   constructor() {
    // this.items= [ new ingrediente("Manzana ejemplo",1), new ingrediente("Azucar ejemplo",2) ];
    this.items=[];
    this.sujeto$=new Subject();
+  this.cantidad$=new BehaviorSubject(0);
   } 
 
   pushItem(item:ingrediente){
@@ -37,6 +39,8 @@ export class CarroServiceService {
       }
     }
     this.items[posicion].setCantidad(this.items[posicion].getCantidad() + incremento);
+
+    this.cantidad$.next(this.items.length);
   }
 
   contains(nombre:String):number{
@@ -56,24 +60,31 @@ export class CarroServiceService {
     }else{//si no esta en el vector
       let item = new ingrediente(text,cant)
       this.pushItem(item);
-    }   
+    }
+    
+    this.cantidad$.next(this.items.length);
   }
 
   addIngredientesDeReceta(recipe:Receta){
     for (let i of recipe.ingredientes){
         this.agregarItem(i.nombre,i.cantidad);
     }
+
+    this.cantidad$.next(this.items.length);
   } 
 
   deleteItems(){
     this.items=[];
     this.sujeto$.next(false);
+
+    this.cantidad$.next(this.items.length);
   }
 
   getSujeto$():Observable<boolean>{
     return this.sujeto$.asObservable();
   }
 
-
-
+  getCantidad$():Observable<number>{
+    return this.cantidad$.asObservable();
+  }
 }

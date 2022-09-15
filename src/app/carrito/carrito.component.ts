@@ -81,6 +81,8 @@ deleteIngredientes(){
 deleteIngrediente(){
   this.listaIngredientes.splice(this.indiceActual,1);
   this.showDetalles=false;
+
+  this.miServicio.cantidad$.next(this.listaIngredientes.length);
 }
 
 actualizarIngrediente(){

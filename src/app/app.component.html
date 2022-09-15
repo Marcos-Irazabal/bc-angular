@@ -1,5 +1,5 @@
 <app-spinner></app-spinner>
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-light" >
   <div class="container-fluid">
     <a class="navbar-brand">Recetas Locas</a>
     <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
@@ -9,7 +9,11 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item" *ngIf="sesionIniciada">
-          <a class="nav-link" aria-current="page" routerLink="/carrito">Carrito</a>
+          <a *ngIf="cantItems==0" class="nav-link" aria-current="page" routerLink="/carrito">Carrito</a>
+          <p *ngIf="cantItems>0">
+            <span matBadge="{{cantItems}}" matBadgeOverlap="false"><a class="nav-link" aria-current="page" routerLink="/carrito">Carrito</a></span>
+          </p>
+          
         </li>
 
         <li class="nav-item" *ngIf="sesionIniciada">

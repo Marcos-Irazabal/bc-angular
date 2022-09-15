@@ -2,14 +2,15 @@
  template
 <app-form-carrito-template></app-form-carrito-template>
  -->
+ <hr>
 <div class="row-12">
     <div class="col-8"><app-formulario-reactivo [objetosOpciones]="this.objetos"></app-formulario-reactivo></div>
 </div>
 
 <hr>
 
-<div class="row">
-    <div class="col-6">
+<div class="row" >
+    <div class="col-6" >
         <!--
         <ul>
             <div class="list-group">
@@ -25,20 +26,24 @@
             </mat-list-option>
           </mat-selection-list>
           
-
-        <button class="btn btn-primary" [disabled]="showDeleteAll" (click)="generateOrder()" >Generar Orden de Compra</button>
-        <button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button>
+        <div class="centered">
+            <button class="btn btn-primary" [disabled]="showDeleteAll" (click)="generateOrder()" >Generar Orden de Compra</button>
+        </div>    
+        <div class="centered">
+            <button [disabled]="showDeleteAll" (click)="deleteIngredientes()" class="btn btn-primary">Limpiar</button>
+        </div>
     </div>
     <div class="col-6">
         <div class="container" *ngIf="showDetalles">
 
             <div class="col">
                 <div class="row-6">
-                    <p>Ingrediente actual: {{ingredienteActual.nombre}}</p>
-                </div>
-                <div class="row-6">
-                    <form>
-                        Cantidad: <input type="number" [(ngModel)]="cantActual" name="cantActual">
+                    <form autocomplete="off">
+                       <!-- Cantidad: <input type="number" [(ngModel)]="cantActual" name="cantActual"> -->
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Cantidad de {{ingredienteActual.nombre}}</mat-label>
+                            <input matInput [(ngModel)]="cantActual" name="cantActual" >
+                          </mat-form-field>
                         <br>
                         <button class="btn btn-success" (click)="actualizarIngrediente()">Actualizar informacion</button>
                         <button class="btn btn-danger" (click)="deleteIngrediente()">Eliminar Ingrediente</button>
