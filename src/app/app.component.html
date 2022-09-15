@@ -1,8 +1,9 @@
 <app-spinner></app-spinner>
-<nav class="navbar navbar-expand-lg bg-light" >
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Recetas Locas</a>
-    <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+    <a class="navbar-brand">Recetasl Locas</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -16,7 +17,7 @@
           
         </li>
 
-        <li class="nav-item" *ngIf="sesionIniciada">
+        <li class="nav-item" *ngIf="sesionIniciada" style="margin-left: 25px;">
           <a class="nav-link" routerLink="/recetas">Recetas</a>
         </li>
 
@@ -24,12 +25,10 @@
           <a class="nav-link" routerLink="/login">Autentificacion</a>
         </li>
 
-        
       </ul>
       <form class="d-flex" role="search" *ngIf="sesionIniciada">
         <button class="btn btn-outline-dark" (click)="logOut()">Cerrar sesion</button>
       </form>
-
     </div>
   </div>
 </nav>

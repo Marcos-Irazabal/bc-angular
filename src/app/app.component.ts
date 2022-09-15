@@ -15,9 +15,10 @@ import { LoginServiceService } from './services/login-service.service';
 export class AppComponent implements OnInit,OnDestroy {
   title = 'PracticaRecetas';
 
+  
   subUsuario:Subscription
   sesionIniciada:boolean=false;
-  public isCollapsed = true;
+
   cantItems:number=0;
   constructor(private loginService:LoginServiceService, private carroSvc:CarroServiceService){}
   
