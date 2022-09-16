@@ -21,8 +21,7 @@ import { ObjetosComponent } from './objetos/objetos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmbellecedorModule } from './embellecedor/embellecedor.module';
 import { PedidosComponent } from './pedidos/pedidos.component';
-import { PaginatePipe } from './paginate.pipe';
-import { PedidosResolverResolver } from './pedidos-resolver.resolver';
+import { PaginatePipe } from './Shared/paginate.pipe';
 
 
 
@@ -37,7 +36,7 @@ const appRouters:Routes=[
   },
   {path: "login",component:LoginComponent},
   {path: "objetos",component:ObjetosComponent},
-  {path: "pedidos",component:PedidosComponent}
+  {path: "pedidos",component:PedidosComponent,canActivate:[AuthGuardGuard]}
   
 ]
 

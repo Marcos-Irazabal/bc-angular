@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ingrediente } from '../models/Ingrediente.model';
 import { OrdenCompra } from '../models/OrdenCompra';
 import { DataService } from '../services/data.service';
@@ -25,15 +25,21 @@ export class PedidosComponent implements OnInit {
   page_size:number =3;
   page_number:number=1;
   pageSizeOptions=[3,5,10];
-
+  ordenesTotales:Array<pedido>;
   ordenesActuales:Array<pedido>;
 
-  constructor(private loginService:LoginServiceService,private pedidoSvc:PedidosServiceService,private router:Router,private http:DataService) { 
-    //this.ordenesActuales=this.pedidoSvc.getOrdenesDelUsuario();
+  constructor(private loginService:LoginServiceService,private pedidoSvc:PedidosServiceService,private router:Router,private http:DataService,private route:ActivatedRoute) { 
+    this.ordenesActuales=[];
+    this.http.descargarOrdenesCompra().subscribe(act => {
+      this.ordenesTotales=Object.values(act);
+      this.ordenesActuales=this.ordenesTotales.filter((obj)=>{return obj.usuario==this.loginService.getUsuario()})
+      this.pedidoSvc.setOrdenesTotales(this.ordenesTotales);
+      this.pedidoSvc.setOrdenesActuales(this.ordenesActuales);
+    })
   }
 
   ngOnInit(): void {
-    this.ordenesActuales=this.pedidoSvc.getOrdenesDelUsuario();
+    //this.ordenesActuales=this.pedidoSvc.getOrdenesDelUsuario();
   }
 
 
@@ -49,7 +55,7 @@ export class PedidosComponent implements OnInit {
   deleteOrder(numOrder:number){
     let orden_a_eLiminar =this.ordenesActuales[numOrder];
     this.pedidoSvc.eliminarOrden(orden_a_eLiminar);
-    this.router.navigate(["pedidos"]);
+    this.router.navigate(["recetas"]);
   }
 
 

@@ -13,11 +13,18 @@ export class PedidosServiceService{
   ordenesActuales:Array<OrdenCompra>
   
   constructor(private http:DataService,private loginService:LoginServiceService) { 
-    this.ordenesTotales=[];
+    /*this.ordenesTotales=[];
     this.http.descargarOrdenesCompra().subscribe(act => {
       this.ordenesTotales=Object.values(act);
     })
-    this.getOrdenesDelUsuario();
+    this.getOrdenesDelUsuario(); */
+  }
+  setOrdenesTotales(ord:Array<OrdenCompra>){
+    this.ordenesTotales=ord;
+  }
+
+  setOrdenesActuales(ord:Array<OrdenCompra>){
+    this.ordenesActuales=ord;
   }
 
   getOrdenesDelUsuario(){
