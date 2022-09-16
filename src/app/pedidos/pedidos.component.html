@@ -1,0 +1,31 @@
+<div *ngIf="showOrdenes()" class="centered">
+    No hay ordenes de compras
+</div>
+<div *ngIf="!showOrdenes()">
+<mat-paginator [length]="this.ordenesActuales.length"
+               [pageSize]="page_size"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="handlePage($event)"
+               aria-label="Select page">
+</mat-paginator>
+</div>
+<div class="col-4" *ngIf="!showOrdenes()">
+    <ul>
+        <li *ngFor="let orden of this.ordenesActuales | paginate:page_size:page_number  ; let i=index">
+
+            <mat-card class="example-card" style="margin-bottom: 15px; background-color: #DAE9E9;">
+                <mat-card-title-group>
+                <mat-card-title><p>Pedido {{i+1}} </p></mat-card-title>
+                <img mat-card-sm-image src="https://cdn-icons-png.flaticon.com/512/126/126515.png" >
+                </mat-card-title-group>
+                <mat-card-content>
+                <p *ngFor="let ingrediente of orden.ingredientes;let j=index">{{ingrediente.nombre}} ({{ingrediente.cantidad}}) </p>
+                </mat-card-content>
+                <mat-card-actions class="centered" >
+                    <button mat-button (click)="deleteOrder(i)" class="btn btn-danger">Delete Order</button>
+                  </mat-card-actions>
+            </mat-card>
+
+        </li>
+    </ul>
+</div>

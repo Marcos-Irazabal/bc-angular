@@ -21,9 +21,15 @@
           <a class="nav-link" routerLink="/recetas">Recetas</a>
         </li>
 
+        <li class="nav-item" *ngIf="sesionIniciada" style="margin-left: 25px;">
+          <a class="nav-link" routerLink="/pedidos">Pedidos</a>
+        </li>
+
         <li class="nav-item" *ngIf="!sesionIniciada">
           <a class="nav-link" routerLink="/login">Autentificacion</a>
         </li>
+
+       
 
       </ul>
       <form class="d-flex" role="search" *ngIf="sesionIniciada">

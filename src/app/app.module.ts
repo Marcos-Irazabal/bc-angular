@@ -20,6 +20,8 @@ import { AuthGuardGuard } from './auth-guard.guard';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmbellecedorModule } from './embellecedor/embellecedor.module';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { PaginatePipe } from './paginate.pipe';
 
 
 
@@ -33,8 +35,9 @@ const appRouters:Routes=[
   canActivate:[AuthGuardGuard]
   },
   {path: "login",component:LoginComponent},
-  {path: "objetos",component:ObjetosComponent}
-  //{path: "",component:AppComponent} esto me duplica el index
+  {path: "objetos",component:ObjetosComponent},
+  {path: "pedidos",component:PedidosComponent}
+  
 ]
 
 
@@ -50,6 +53,8 @@ const appRouters:Routes=[
     LoginComponent,
     SpinnerComponent,
     ObjetosComponent,
+    PedidosComponent,
+    PaginatePipe,
   ],
   imports: [ //modulos que agregamos al proyecto
     CommonModule,
