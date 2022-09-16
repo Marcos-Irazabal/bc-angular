@@ -109,4 +109,8 @@ autoLogout(expirationDuration: number) {
   }, expirationDuration)
 }
 
+  getUsuario():String{
+    let datosUsu: {email:String,password:String,_token:String,_tokenExpirationDate:string} = JSON.parse(localStorage.getItem("DatosDelUsuario"));
+    return datosUsu.email;
+  }
 }

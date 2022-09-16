@@ -4,6 +4,7 @@ import { ingrediente } from '../models/Ingrediente.model';
 import { OrdenCompra } from '../models/OrdenCompra';
 import { CarroServiceService } from '../services/carro-service.service';
 import { DataService } from '../services/data.service';
+import { LoginServiceService } from '../services/login-service.service';
 
 @Component({
   selector: 'app-carrito',
@@ -25,7 +26,8 @@ export class CarritoComponent implements OnInit,OnChanges {
   objetos= new Array<string>;
 
  
-  constructor(private miServicio:CarroServiceService, private servicioHttp:DataService, private router:Router) { 
+  constructor(private miServicio:CarroServiceService, private servicioHttp:DataService, private router:Router
+    ,private loginSvc:LoginServiceService) { 
   }
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class CarritoComponent implements OnInit,OnChanges {
  }
 
  generateOrder(){
-  this.arrayAux.push(new OrdenCompra(this.miServicio.getItems()));
+  this.arrayAux.push(new OrdenCompra(this.miServicio.getItems(),this.loginSvc.getUsuario()));
   this.servicioHttp.subirOrdenCompra(this.arrayAux);
   //this.arrayAux=[];
   this.miServicio.deleteItems();

@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "site": "recetas-bc-angular",
+
+    "public": "dist/practica-recetas"
+  }
+}
