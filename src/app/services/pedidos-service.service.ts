@@ -10,24 +10,19 @@ import { LoginServiceService } from './login-service.service';
 export class PedidosServiceService{
 
   ordenesTotales:Array<OrdenCompra>
-  ordenesDeUsuario$:BehaviorSubject<Array<OrdenCompra>>;
+  ordenesActuales:Array<OrdenCompra>
   
   constructor(private http:DataService,private loginService:LoginServiceService) { 
     this.ordenesTotales=[];
     this.http.descargarOrdenesCompra().subscribe(act => {
       this.ordenesTotales=Object.values(act);
     })
-
-    this.ordenesDeUsuario$=new BehaviorSubject(this.getOrdenesDelUsuario());
-    this.ordenesDeUsuario$.next(this.ordenesTotales);
-  }
-
-  getOrdenesDeUsuario$():Observable<Array<OrdenCompra>>{
-    return this.ordenesDeUsuario$.asObservable();
+    this.getOrdenesDelUsuario();
   }
 
   getOrdenesDelUsuario(){
-    return this.ordenesTotales.filter((obj)=>{return obj.usuario==this.loginService.getUsuario()})
+    this.ordenesActuales=this.ordenesTotales.filter((obj)=>{return obj.usuario==this.loginService.getUsuario()})
+    return this.ordenesActuales;
   }
 
   eliminarOrden(eliminando:OrdenCompra){
@@ -36,7 +31,5 @@ export class PedidosServiceService{
       this.ordenesTotales.splice(indice_a_eliminar, 1);
     }
     this.http.subirOrdenCompra(this.ordenesTotales);
-
-    this.ordenesDeUsuario$.next(this.ordenesTotales);
   }
 }

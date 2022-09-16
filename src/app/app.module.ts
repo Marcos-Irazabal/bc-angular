@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmbellecedorModule } from './embellecedor/embellecedor.module';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { PaginatePipe } from './paginate.pipe';
+import { PedidosResolverResolver } from './pedidos-resolver.resolver';
 
 
 
