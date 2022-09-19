@@ -1,7 +1,16 @@
 {
   "hosting": {
-    "site": "recetas-bc-angular",
-
-    "public": "dist/practica-recetas"
+    "public": "dist/practica-recetas",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }

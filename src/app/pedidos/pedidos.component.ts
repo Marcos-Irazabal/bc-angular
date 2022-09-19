@@ -28,7 +28,7 @@ export class PedidosComponent implements OnInit {
   ordenesTotales:Array<pedido>;
   ordenesActuales:Array<pedido>;
 
-  constructor(private loginService:LoginServiceService,private pedidoSvc:PedidosServiceService,private router:Router,private http:DataService,private route:ActivatedRoute) { 
+  constructor(private loginService:LoginServiceService,private pedidoSvc:PedidosServiceService,private router:Router,private http:DataService) { 
     this.ordenesActuales=[];
     this.http.descargarOrdenesCompra().subscribe(act => {
       this.ordenesTotales=Object.values(act);

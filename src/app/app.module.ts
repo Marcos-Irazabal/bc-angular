@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmbellecedorModule } from './embellecedor/embellecedor.module';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { PaginatePipe } from './Shared/paginate.pipe';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -55,6 +56,7 @@ const appRouters:Routes=[
     ObjetosComponent,
     PedidosComponent,
     PaginatePipe,
+    TestComponent,
   ],
   imports: [ //modulos que agregamos al proyecto
     CommonModule,
