@@ -1,0 +1,29 @@
+<form [formGroup]="formularioGrupo">
+  <div class="col" style="align-items: center;">
+    <!--Nuevo ingrediente:<input type="text" formControlName="nombre"> 
+    Nuevo ingrediente: <select name="objetoIngrediente" id="objetoIngrediente" formControlName="nombre">
+        <option type="text" *ngFor="let obj of this.objetosOpciones;let i=index" value="{{this.objetosOpciones[i]}}" >{{this.objetosOpciones[i]}}</option>
+    </select>
+-->
+    <mat-form-field appearance="fill" style="padding-right:10px ;">
+        <mat-label>Seleccione Ingrediente</mat-label>
+        <mat-select disableRipple name="objetoIngrediente" id="objetoIngrediente" formControlName="nombre">
+          <mat-option *ngFor="let obj of this.objetosOpciones;let i=index" value="{{this.objetosOpciones[i]}}">{{this.objetosOpciones[i]}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    <!--Cantidad:<input type="number" formControlName="cantidad"> -->
+
+    <mat-form-field class="example-full-width" appearance="fill" style="padding-right:10px ;">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="cantidad">
+      </mat-form-field>
+
+
+    <!--<button (click)="addItem()" [disabled]="formularioGrupo.invalid" class="btn btn-success" >Agregar</button> -->
+    <button mat-raised-button color="primary" (click)="addItem()" [disabled]="formularioGrupo.invalid" class="btn btn-success" style="padding-bottom: 3px;padding-top: 15px;">Agregar</button>
+    
+    <!--<button (click)="clearForm()" class="btn btn-primary" >Limpiar</button> falta ver como deshabilitarlo-->
+  </div>
+</form>

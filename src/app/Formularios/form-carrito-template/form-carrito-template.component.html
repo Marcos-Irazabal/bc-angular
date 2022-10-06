@@ -1,0 +1,5 @@
+<form #FormTemplate="ngForm" (ngSubmit)="addItem(FormTemplate)">
+    <label>Nuevo ingrediente: </label><input type="text" name="input_text" [(ngModel)]="input_text" >
+    <label>Cantidad:</label> <input type="number" name="input_cant" [(ngModel)]="input_cant">
+    <button type="submit" class="btn btn-primary" >Agregar</button>
+</form>

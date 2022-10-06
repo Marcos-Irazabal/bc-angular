@@ -1,0 +1,42 @@
+<div class="centered">
+    
+    <form [formGroup]="formulario" (ngSubmit)="formAction()" class="formBody">
+
+        <div class="alert alert-danger" *ngIf="error" text-align: center>
+            <p>{{error}}</p>
+        </div> 
+        
+
+        <h1>{{isLoginMode ? "Iniciar sesion" : "Registrarse"}}</h1>
+        <div>
+            <mat-form-field class="example-full-width ancho" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="example@example.com" formControlName="email">
+            </mat-form-field>
+        <!-- <input type="text" formControlName="email" placeholder="Email"> -->
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill" class="ancho">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="contra" >
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <!--<input type="text" formControlName="contra" placeholder="password"> -->
+        </div>
+
+        <div>
+            <button class="ancho" mat-raised-button color="primary" type="submit" [disabled]="formulario.invalid">{{isLoginMode ? "Iniciar sesion" : "Registrarse"}}</button>
+
+            <!-- <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" >{{isLoginMode ? "Iniciar sesion" : "Registrarse"}}</button> -->
+        </div>
+
+        <div>
+            <button class="ancho" (click)="onSwitchMode()" mat-raised-button color="primary" type="button" >cambiar a {{isLoginMode ? 'Registrarse' : 'Iniciar sesion'}}</button>
+        <!-- <button class="btn btn-primary" (click)="onSwitchMode()" type="button">cambiar a {{isLoginMode ? 'Registrarse' : 'Iniciar sesion'}}</button> -->
+        </div>
+
+    </form>
+</div>
